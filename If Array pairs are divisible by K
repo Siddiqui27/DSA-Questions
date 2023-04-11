@@ -1,0 +1,35 @@
+https://leetcode.com/problems/check-if-array-pairs-are-divisible-by-k/
+
+LOGIC- numbers who are supposed to make pairs(complementary), they should have same remainders(on diving by k).
+
+class Solution {
+    public boolean canArrange(int[] arr, int k) 
+    {
+        int[] st= new int[k];
+    
+        for(int i=0;i<arr.length; i++)
+        {
+           int rem=(arr[i]%k);
+           if(rem<0)
+           {
+               rem+=k;
+           }
+           st[rem]+=1;
+        }
+        
+        if(st[0]%2!=0)
+        {
+            return false;
+        }
+
+        for(int i=1; i<=k/2; i++)
+        {
+            if(st[i]!=st[k-i])
+            {   System.out.println(i);
+                return false;}
+        }
+
+       
+        return true;
+    }
+}
